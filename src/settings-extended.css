@@ -1,0 +1,22 @@
+/* Didactic Infobox */
+.didactic-infobox {
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 3px solid #f59e0b;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.didactic-infobox h4 {
+  color: #fbbf24;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.didactic-infobox p {
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin: 0;
+}
