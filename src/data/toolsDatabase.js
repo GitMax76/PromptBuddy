@@ -37,12 +37,12 @@ export const toolsDatabase = [
             }
         ],
         generatePrompt: (data) => {
-            let prompt = "";
-            if (data.role) prompt += `**RUOLO**\n${data.role.trim()}\n\n`;
-            if (data.context) prompt += `**CONTESTO**\n${data.context.trim()}\n\n`;
-            if (data.task) prompt += `**OBIETTIVO**\n${data.task.trim()}\n\n`;
-            if (data.constraints) prompt += `**VINCOLI E REGOLE**\n${data.constraints.trim()}\n\n`;
-            prompt += `**PROCEDURA RICHIESTA**\nSpiega il tuo ragionamento logico passo-passo prima di fornire la soluzione finale.`;
+            let prompt = "You are an expert. I need a structured output exactly as specified below. Use clear Markdown headers and bold text for formatting.\n\n";
+            if (data.role) prompt += `**RUNTIME/ROLE**\nAct as: ${data.role.trim()}\n\n`;
+            if (data.context) prompt += `**OVERVIEW & CONTEXT**\n${data.context.trim()}\n\n`;
+            if (data.task) prompt += `**GENERAL TASK STRUCTURE**\n${data.task.trim()}\n\n`;
+            if (data.constraints) prompt += `**CRITICAL INSTRUCTIONS & RESTRICTIONS**\n${data.constraints.trim()}\n\n`;
+            prompt += `**OUTPUT PROCEDURE**\nSpiega il tuo ragionamento logico (think silently if needed) prima di fornire la soluzione finale.`;
             return prompt.trim();
         }
     },
@@ -94,10 +94,11 @@ export const toolsDatabase = [
             { id: "rules", label: "Regole rigorose (XML <rules>)", guide: "Le leggi inalienabili.", helpText: "Usa negazioni forti o imperativi assoluti. Claude ubbidisce meticolosamente a questa sezione. 'YOU MUST...', 'NON DEVI MAI...'", placeholder: "Es: NON usare framework CSS. Devi usare solo Vanilla CSS. Non stampare chiacchiere in output, solo codice copiabile." }
         ],
         generatePrompt: (data) => {
-            let prompt = "Please follow these specific instructions based on the provided XML structure:\n\n";
+            let prompt = "Please follow these specific instructions based on the provided XML structure. You are expected to deliver a masterful output:\n\n";
             if (data.context) prompt += `<context>\n${data.context.trim()}\n</context>\n\n`;
             if (data.task) prompt += `<task>\n${data.task.trim()}\n</task>\n\n`;
             if (data.rules) prompt += `<rules>\n${data.rules.trim()}\n</rules>\n\n`;
+            prompt += `To prevent hallucinations and ensure logical consistency, you MUST first wrap your step-by-step reasoning process inside <thinking></thinking> tags before delivering the final output outside of the tags. Obey the XML rules strictly.`;
             return prompt.trim();
         }
     },

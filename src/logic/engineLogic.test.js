@@ -5,18 +5,18 @@ describe('engineLogic - getIntelligentSuggestions', () => {
     
     it('deve suggerire prompt corretti per gemini - role', () => {
         const suggestions = getIntelligentSuggestions('role', ['testo'], 'gemini', {});
-        expect(suggestions).toContain("Sei un analista dati esperto");
+        expect(suggestions).toContain("Sei un analista dati esperto. Usa un tono accademico.");
         expect(suggestions.length).toBeGreaterThan(0);
     });
 
     it('deve suggerire prompt corretti per chatgpt - topic', () => {
         const suggestions = getIntelligentSuggestions('topic', ['codice'], 'chatgpt', {});
-        expect(suggestions).toContain("Questa funzione Python");
+        expect(suggestions).toContain("Questa funzione Python legacy");
     });
 
     it('deve restituire consigli corretti per claude - rules', () => {
         const suggestions = getIntelligentSuggestions('rules', ['codice'], 'claude', {});
-        expect(suggestions).toContain("Rispondi rigorosamente in formato JSON valida");
+        expect(suggestions).toContain("Rispondi rigorosamente e unicamente in formato JSON valido.");
     });
 
     it('deve restituire i fallback se il tool non esiste', () => {

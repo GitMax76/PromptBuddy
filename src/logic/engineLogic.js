@@ -2,21 +2,21 @@ export const getIntelligentSuggestions = (stepId, categories, toolId, data) => {
     // A simple deterministic recommendation engine based on current fields
     const suggestions = {
         gemini: {
-            role: ["Sei un analista dati esperto", "Sei uno sviluppatore frontend Senior", "Sei un copywriter creativo"],
-            context: ["Ho bisogno di ottimizzare questa funzione per...", "Stiamo lanciando un nuovo prodotto e...", "Devo comprendere questo documento complesso:"],
-            task: ["Fai un'analisi dettagliata passo-passo", "Restituisci un piano strutturato in capitoli", "Risolvi il seguente problema logico:"],
-            constraints: ["Spiega il tuo ragionamento prima dell'output", "Nessun framework, usa tecnologie standard", "Sintetizza in massimo 3 paragrafi"]
+            role: ["Sei un analista dati esperto. Usa un tono accademico.", "Sei uno sviluppatore frontend Senior. Pensa come un ingegnere del software.", "Sei un revisore di codice severo."],
+            context: ["Ho bisogno di ottimizzare questa architettura per...", "Questo script gira in produzione con questi vincoli di memoria...", "Devo estrarre insight da questa stringa JSON complessa:"],
+            task: ["Fai un'analisi dettagliata passo-passo e individua le inefficienze.", "Spiega le vulnerabilità di sicurezza in questo blocco.", "Risolvi il problema indicando pro e contro della soluzione."],
+            constraints: ["Spiega la tua ratio analitica prima dell'output finale.", "Nessun framework, usa tecnologie standard e rispondi in puro JSON.", "Sintetizza in massimo 3 paragraphi, usando rigorosamente Markdown headers."]
         },
         chatgpt: {
-            action: ["Scrivi", "Analizza", "Traduci", "Spiega"],
-            topic: ["Un post per LinkedIn sul remote work", "Questa funzione Python", "Il concetto di Quantum Computing"],
-            format: ["In formato Markdown ben leggibile", "Come tabella comparativa", "Lista puntata"],
-            tone: ["Professionale ma empatico", "Tecnico e conciso", "Umoristico"]
+            action: ["Scrivi una bozza", "Analizza criticamente", "Traduci riga per riga", "Spiega il significato di"],
+            topic: ["Questo post virale su LinkedIn", "Questa funzione Python legacy", "Il concetto di Quantum Computing"],
+            format: ["In formato Markdown ben leggibile", "Come tabella comparativa", "Lista puntata categorizzata"],
+            tone: ["Professionale ma assertivo", "Tecnico, conciso e senza preamboli", "Creativo e umoristico"]
         },
         claude: {
-            context: ["Siamo in un progetto React e...", "Questo è il log di un errore del server...", "Ecco il testo grezzo da cui partire:"],
-            task: ["Converti questo in una pagina web funzionale", "Trova la causa del memory leak", "Estrai le entità rilevanti e raggruppale"],
-            rules: ["Rispondi rigorosamente in formato JSON valida", "Non aggiungere spiegazioni, stampa solo le parti richieste", "Attieniti unicamente alle informazioni fornite nel contesto"]
+            context: ["Lavoriamo in React. Ecco il log degli errori del backend serverless...", "Questo è il file legacy da rifattorizzare...", "L'utente finale fatica con la UI attuale. Ecco la struttura:"],
+            task: ["Converti questo in una pagina web funzionale usando i best-pattern.", "Isola il memory leak e proponi una soluzione scalabile.", "Estrai le entità rilevanti ed effetta un mapping strutturato."],
+            rules: ["Rispondi rigorosamente e unicamente in formato JSON valido.", "Non aggiungere alcuna spiegazione conversazionale esterna all'XML.", "Attieniti unicamente al contesto. Se mancano dati, fallisc silentemente."]
         },
         perplexity: {
             query: ["Quali sono i trend di mercato per...", "Chi sono i competitor diretti di...", "Quali articoli scientifici recenti parlano di..."],
