@@ -1,19 +1,13 @@
 import React from 'react';
+import { recommendToolFromIntent } from '../logic/intentAnalyzer';
 
 const ToolSelector = ({ rawIntent, tools, onSelectTool, onBack }) => {
   // Filter only requested tools for now
   const allowedTools = ['gemini', 'chatgpt', 'claude'];
   const filteredTools = tools.filter(t => allowedTools.includes(t.id));
 
-  const textLower = (rawIntent || "").toLowerCase();
-  
   // Very basic heuristic to recommend tool
-  let recommendedId = 'chatgpt'; // default fallback for general text
-  if (textLower.includes('codice') || textLower.includes('programm') || textLower.includes('react') || textLower.includes('bug')) {
-    recommendedId = 'claude'; // Claude is incredible at coding
-  } else if (textLower.includes('analizz') || textLower.includes('ragion') || textLower.includes('dati')) {
-    recommendedId = 'gemini';
-  }
+  const recommendedId = recommendToolFromIntent(rawIntent);
 
   return (
     <div className="tool-selector">
