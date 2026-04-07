@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const PromptOutput = ({ promptText, onReset }) => {
   const [copied, setCopied] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(true);
+
+  useEffect(() => {
+    // Simulate AI engineering process for a cool UX effect
+    const timer = setTimeout(() => {
+      setIsProcessing(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(promptText).then(() => {
@@ -18,11 +27,17 @@ const PromptOutput = ({ promptText, onReset }) => {
       </div>
 
       <div className="output-container">
-        <div className="prompt-result">
+        <div className={`prompt-result ${isProcessing ? 'processing' : ''}`}>
+          <div className="engineered-badge">
+            <span style={{ fontSize: '12px' }}>✨</span> Prompt Engineerizzato
+          </div>
           <button className="copy-btn" onClick={handleCopy}>
             {copied ? '✓ Copiato!' : '📋 Copia'}
           </button>
-          {promptText}
+          
+          <div style={{ marginTop: '2.5rem' }}>
+            {isProcessing ? 'Lavaggio descrittori in corso... Ottimizzazione istruzioni...' : promptText}
+          </div>
         </div>
       </div>
 

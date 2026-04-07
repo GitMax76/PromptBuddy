@@ -1,0 +1,51 @@
+
+[1m[46m RUN [49m[22m [36mv4.1.2 [39m[90mC:/Users/Smartworking/.gemini/antigravity/scratch/system-prompts-and-models-of-ai-tools-1/prompt-buddy-app[39m
+
+ [32mÔ£ô[39m src/logic/nlpEngine.test.js[2m > [22mMotore NLP (Natural Language Processing)[2m > [22mFase 1: Pulizia (Clean)[2m > [22mdeve ripulire i convenevoli testuali[32m 2[2mms[22m[39m
+ [31m├ù[39m src/logic/nlpEngine.test.js[2m > [22mMotore NLP (Natural Language Processing)[2m > [22mFase 2: Spellcheck (Refusi e Slang)[2m > [22mdeve correggere i refusi italiani pi├╣ comuni[32m 7[2mms[22m[39m
+[31m   ÔåÆ expected 'xch├® fai cos├¼?' to be 'perch├® fai cos├¼?' // Object.is equality[39m
+ [32mÔ£ô[39m src/logic/nlpEngine.test.js[2m > [22mMotore NLP (Natural Language Processing)[2m > [22mFase 3: Upgrade Lessicale[2m > [22mdeve elevare il tono in ambito tecnico[32m 1[2mms[22m[39m
+ [31m├ù[39m src/logic/nlpEngine.test.js[2m > [22mMotore NLP (Natural Language Processing)[2m > [22mFase 4: Integrazione Totale (Pipeline NLP)[2m > [22mdeve processare input massivi e incasinati resistuendoli puliti[32m 1[2mms[22m[39m
+[31m   ÔåÆ expected 'Esteticamente curato piattaforma web ÔÇª' to be 'Un esteticamente curato piattaforma wÔÇª' // Object.is equality[39m
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 2 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  src/logic/nlpEngine.test.js > Motore NLP (Natural Language Processing) > Fase 2: Spellcheck (Refusi e Slang) > deve correggere i refusi italiani pi├╣ comuni
+AssertionError: expected 'xch├® fai cos├¼?' to be 'perch├® fai cos├¼?' // Object.is equality
+
+Expected: "perch├® fai cos├¼?"
+Received: "xch├® fai cos├¼?"
+
+ ÔØ» src/logic/nlpEngine.test.js:40:47
+     38|         it('deve correggere i refusi italiani pi├╣ comuni', () => {
+     39|             spellcheckTests.forEach(({in: input, out: expected}) => {
+     40|                 expect(NLP.spellcheck(input)).toBe(expected);
+       |                                               ^
+     41|             });
+     42|         });
+ ÔØ» src/logic/nlpEngine.test.js:39:29
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/2]ÔÄ»
+
+ FAIL  src/logic/nlpEngine.test.js > Motore NLP (Natural Language Processing) > Fase 4: Integrazione Totale (Pipeline NLP) > deve processare input massivi e incasinati resistuendoli puliti
+AssertionError: expected 'Esteticamente curato piattaforma web ÔÇª' to be 'Un esteticamente curato piattaforma wÔÇª' // Object.is equality
+
+Expected: "Un esteticamente curato piattaforma web altamente performante"
+Received: "Esteticamente curato piattaforma web altamente performante"
+
+ ÔØ» src/logic/nlpEngine.test.js:67:77
+     65|
+     66|         it('deve processare input massivi e incasinati resistuendoli pÔÇª
+     67|             expect(NLP.process("ciao per favore fammi un bel stio veloÔÇª
+       |                                                                             ^
+     68|             expect(NLP.process("scusa puoi fare una aplicazione che fuÔÇª
+     69|         });
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 20:26:52
+[2m   Duration [22m 2.41s[2m (transform 66ms, setup 210ms, import 45ms, tests 12ms, environment 1.90s)[22m
+
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/2]ÔÄ»
+

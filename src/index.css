@@ -63,6 +63,7 @@ body::before {
   font-weight: 700;
   background: linear-gradient(135deg, #fff, var(--accent-light));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
@@ -379,4 +380,33 @@ textarea:focus, input:focus {
   .tool-grid { grid-template-columns: 1fr; }
   .wizard-container { padding: 0; }
   .glass-panel { padding: 1.5rem; margin-bottom: 2rem; }
+}
+
+/* Processing Animation */
+@keyframes pulse-border {
+  0% { border-color: rgba(109, 40, 217, 0.3); }
+  50% { border-color: rgba(139, 92, 246, 1); box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); }
+  100% { border-color: rgba(109, 40, 217, 0.3); }
+}
+
+.processing {
+  animation: pulse-border 1s ease-in-out infinite;
+}
+
+.engineered-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  color: #c4b5fd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }

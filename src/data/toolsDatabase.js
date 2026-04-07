@@ -1,3 +1,5 @@
+import { NLP } from '../logic/nlpEngine';
+
 export const toolsDatabase = [
     {
         id: "gemini",
@@ -37,12 +39,12 @@ export const toolsDatabase = [
             }
         ],
         generatePrompt: (data) => {
-            let prompt = "You are an expert. I need a structured output exactly as specified below. Use clear Markdown headers and bold text for formatting.\n\n";
-            if (data.role) prompt += `**RUNTIME/ROLE**\nAct as: ${data.role.trim()}\n\n`;
-            if (data.context) prompt += `**OVERVIEW & CONTEXT**\n${data.context.trim()}\n\n`;
-            if (data.task) prompt += `**GENERAL TASK STRUCTURE**\n${data.task.trim()}\n\n`;
-            if (data.constraints) prompt += `**CRITICAL INSTRUCTIONS & RESTRICTIONS**\n${data.constraints.trim()}\n\n`;
-            prompt += `**OUTPUT PROCEDURE**\nSpiega il tuo ragionamento logico (think silently if needed) prima di fornire la soluzione finale.`;
+            let prompt = "Sei un esperto. Ho bisogno di un output strutturato esattamente come specificato di seguito. Usa header Markdown chiari e testo in grassetto per la formattazione.\n\n";
+            if (data.role) prompt += `**RUNTIME/RUOLO**\nAgisci come: ${NLP.process(data.role)}\n\n`;
+            if (data.context) prompt += `**PANORAMICA E CONTESTO**\n${NLP.process(data.context)}\n\n`;
+            if (data.task) prompt += `**STRUTTURA OBIETTIVO ESECUTIVO**\n${NLP.process(data.task)}\n\n`;
+            if (data.constraints) prompt += `**REGOLE RIGOROSE E VINCOLI**\n${NLP.process(data.constraints)}\n\n`;
+            prompt += `**PROCEDURA DI ESECUZIONE**\nSpiega il tuo ragionamento logico prima di fornire la soluzione finale.`;
             return prompt.trim();
         }
     },
@@ -73,11 +75,11 @@ export const toolsDatabase = [
         ],
         generatePrompt: (data) => {
             let prompt = "Agisci come un esperto del settore e segui fedelmente queste istruzioni:\n\n";
-            if (data.action && data.topic) prompt += `### Istruzione Principale\n${data.action.trim()}\n\n### Dati/Argomento\n${data.topic.trim()}\n\n`;
-            else if (data.topic) prompt += `### Argomento\n${data.topic.trim()}\n\n`;
+            if (data.action && data.topic) prompt += `### Istruzione Principale\n${NLP.process(data.action)}\n\n### Dati/Argomento\n${NLP.process(data.topic)}\n\n`;
+            else if (data.topic) prompt += `### Argomento\n${NLP.process(data.topic)}\n\n`;
             
-            if (data.format) prompt += `### Formato Richiesto\n${data.format.trim()}\n\n`;
-            if (data.tone) prompt += `### Tono di Voce\n${data.tone.trim()}\n\n`;
+            if (data.format) prompt += `### Formato Richiesto\n${NLP.process(data.format)}\n\n`;
+            if (data.tone) prompt += `### Tono di Voce\n${NLP.process(data.tone)}\n\n`;
             return prompt.trim();
         }
     },
@@ -94,11 +96,11 @@ export const toolsDatabase = [
             { id: "rules", label: "Regole rigorose (XML <rules>)", guide: "Le leggi inalienabili.", helpText: "Usa negazioni forti o imperativi assoluti. Claude ubbidisce meticolosamente a questa sezione. 'YOU MUST...', 'NON DEVI MAI...'", placeholder: "Es: NON usare framework CSS. Devi usare solo Vanilla CSS. Non stampare chiacchiere in output, solo codice copiabile." }
         ],
         generatePrompt: (data) => {
-            let prompt = "Please follow these specific instructions based on the provided XML structure. You are expected to deliver a masterful output:\n\n";
-            if (data.context) prompt += `<context>\n${data.context.trim()}\n</context>\n\n`;
-            if (data.task) prompt += `<task>\n${data.task.trim()}\n</task>\n\n`;
-            if (data.rules) prompt += `<rules>\n${data.rules.trim()}\n</rules>\n\n`;
-            prompt += `To prevent hallucinations and ensure logical consistency, you MUST first wrap your step-by-step reasoning process inside <thinking></thinking> tags before delivering the final output outside of the tags. Obey the XML rules strictly.`;
+            let prompt = "Segui rigorosamente queste istruzioni basate sulla struttura XML fornita. L'obiettivo è generare un output di eccellenza e senza compromessi:\n\n";
+            if (data.context) prompt += `<context>\n${NLP.process(data.context)}\n</context>\n\n`;
+            if (data.task) prompt += `<task>\n${NLP.process(data.task)}\n</task>\n\n`;
+            if (data.rules) prompt += `<rules>\n${NLP.process(data.rules)}\n</rules>\n\n`;
+            prompt += `Per prevenire allucinazioni e garantire una totale coerenza logica, DEVI prima strutturare il tuo ragionamento analitico all'interno dei tag <thinking></thinking> prima di erogare la soluzione finale. Rispetta rigorosamente i blocchi XML.`;
             return prompt.trim();
         }
     },
@@ -116,9 +118,9 @@ export const toolsDatabase = [
         ],
         generatePrompt: (data) => {
             let prompt = "";
-            if (data.query) prompt += `**Soggetto di Ricerca:** ${data.query.trim()}\n\n`;
-            if (data.focus) prompt += `**Limiti e vincoli orizzonte (Fonti):** ${data.focus.trim()}\n\n`;
-            if (data.synthesis) prompt += `**Formato e delivery Risposta:** ${data.synthesis.trim()}\nAssicurati di citare sempre rigorosamente le fonti per ogni singola affermazione (inline citations).`;
+            if (data.query) prompt += `**Soggetto di Ricerca:** ${NLP.process(data.query)}\n\n`;
+            if (data.focus) prompt += `**Limiti e vincoli orizzonte (Fonti):** ${NLP.process(data.focus)}\n\n`;
+            if (data.synthesis) prompt += `**Formato e delivery Risposta:** ${NLP.process(data.synthesis)}\nAssicurati di citare sempre rigorosamente le fonti per ogni singola affermazione (inline citations).`;
             return prompt.trim();
         }
     },
